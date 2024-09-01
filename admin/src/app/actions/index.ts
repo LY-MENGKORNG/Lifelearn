@@ -1,0 +1,1 @@
+export { getPosts, getPostById, getUsers, getUserById } from './test'
