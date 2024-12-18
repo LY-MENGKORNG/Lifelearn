@@ -1,0 +1,20 @@
+{
+	"appName": "Lifelearn",
+	"paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit odio et similique iusto eius. Ex et voluptas hic deleniti aut!",
+	"theme": {
+		"dark": "dark",
+		"light": "light",
+		"system": "system"
+	},
+	"lang": {
+		"km": "Khmer",
+		"en": "English"
+	},
+	"selection": {
+		"view": "view",
+		"bar": "bar",
+		"line": "line",
+		"area": "area",
+		"scatter": "scatter"
+	}
+}
