@@ -1,5 +1,5 @@
 'use client'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import {
 	ColumnDef,
 	ColumnFiltersState,
@@ -32,26 +32,49 @@ import { ChevronDown } from 'lucide-react'
 
 type DataTableProps<Tdata, Tvalue> = {
 	columns: ColumnDef<Tdata, Tvalue>[]
-	data: Tdata[]
+	data?: Tdata[]
+	dataEndpoint?: string // eg. /localhost:3000/api/user
 }
 
 /**
- *  A reusable components for `Table`
+ * A reusable components for `Table`
  * @param {Array<Tdata>} data
  * @param {Array<ColumnDef<Tdata, Tvalue>>} columns
  * @return JSX.Element
  */
 export default function DataTable<Tdata, Tvalue>({
 	columns,
-	data,
+	data = [],
+	dataEndpoint,
 }: DataTableProps<Tdata, Tvalue>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 	const [rowSelection, setRowSelection] = useState({})
+	const [chartData, setChartData] = useState<Tdata[]>(data)
+	const [loading, setLoading] = useState<boolean>(false)
+
+	useEffect(() => {
+		if (!dataEndpoint) return
+
+		const fetchData = async () => {
+			setLoading(true)
+			try {
+				const response = await fetch(dataEndpoint, { cache: 'no-store' })
+				const result: Tdata[] = await response.json()
+				setChartData(result)
+			} catch (error) {
+				console.error('Error fetching data:', error)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		fetchData()
+	}, [dataEndpoint])
 
 	const table = useReactTable({
-		data,
+		data: chartData,
 		columns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
@@ -70,8 +93,8 @@ export default function DataTable<Tdata, Tvalue>({
 	})
 
 	return (
-		<div className={'w-full'}>
-			<div className={'flex items-center pb-2'}>
+		<div className={`w-full`}>
+			<div className={'flex items-center pb-1'}>
 				<Input
 					placeholder={'Filter email...'}
 					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
@@ -108,7 +131,9 @@ export default function DataTable<Tdata, Tvalue>({
 					{/* Table Header */}
 					<TableHeader className={'py-0 bg-muted/50'}>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
+							<TableRow
+								key={headerGroup.id}
+								className='h-12'>
 								{headerGroup.headers.map((header) => (
 									<TableHead key={header.id}>
 										{header.isPlaceholder
@@ -129,6 +154,7 @@ export default function DataTable<Tdata, Tvalue>({
 							table.getRowModel().rows.map((row) => (
 								<TableRow
 									key={row.id}
+									className='h-12'
 									data-state={row.getIsSelected() && 'selected'}>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>
@@ -145,7 +171,7 @@ export default function DataTable<Tdata, Tvalue>({
 								<TableCell
 									colSpan={columns.length}
 									className='h-24 text-center'>
-									No results.
+									{loading ? 'Loading...' : 'No results.'}
 								</TableCell>
 							</TableRow>
 						)}

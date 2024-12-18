@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+=======
+# Lifelearn
+
+## Overview
+
+**Lifelearn** is a comprehensive academic study platform designed to support educators, students, and administrators. The platform offers a feature-rich website that includes an extensive online library, providing access to various educational resources, such as e-books, research materials, and multimedia learning content.
+
+Additionally, **Lifelearn** features a high school management system tailored to streamline administrative tasks, including attendance tracking, grade management, scheduling, and communication between stakeholders. This system is a valuable tool for schools seeking to improve efficiency and enhance their educational offerings.
+
+The high school management system is available for purchase directly through the Lifelearn website, making it accessible to institutions looking for an all-in-one solution to modernize their operations. Lifelearn aims to empower education through innovative tools and seamless integration of technology.
+>>>>>>> b73017f (chore(main): #3 change tech stack)

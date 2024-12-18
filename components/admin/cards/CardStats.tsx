@@ -1,7 +1,15 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { CircleDollarSign, LucideProps, User } from 'lucide-react'
+<<<<<<< HEAD
 import { type ForwardRefExoticComponent, type RefAttributes } from 'react'
+=======
+import {
+	Fragment,
+	type ForwardRefExoticComponent,
+	type RefAttributes,
+} from 'react'
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 import { type BadgeVariantsProps, Badge } from '@/components/ui/badge'
 
 type CardStatsType = {

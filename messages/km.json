@@ -1,5 +1,9 @@
 {
 	"appName": "Lifelearn",
+<<<<<<< HEAD
+=======
+	"welcome": "សូមស្វាគមន៍មកកាន់ Lifelearn",
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 	"paragraph": "ក្រុមហ៊ុនខ្លួនឯងគឺជាក្រុមហ៊ុនដែលជោគជ័យខ្លាំង។ គាត់នឹងរិះគន់ដោយការស្អប់ខ្ពើម។ ពីនិងរីករាយនៅទីនេះពួកគេត្រូវបានបន្ទន់ឬ",
 	"theme": {
 		"dark": "ងងឹត",
@@ -14,7 +18,17 @@
 		"view": "មើល",
 		"bar": "bar",
 		"line": "line",
+<<<<<<< HEAD
 		"area": "area",
 		"scatter": "scatter"
+=======
+		"area": "area"
+	},
+	"button": {
+		"submit": "ដាក់ស្នើ",
+		"cancel": "បោះបង់",
+		"reset": "កំណត់ឡើងវិញ",
+		"save": "រក្សាទុក"
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 	}
 }

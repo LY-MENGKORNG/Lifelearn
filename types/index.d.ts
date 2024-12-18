@@ -4,7 +4,11 @@
 type Theme = "dark" | "light" | "system"
 
 // Charts
+<<<<<<< HEAD
 type ChartType = 'line' | 'bar' | 'area' | 'scatter'
+=======
+type ChartType = 'line' | 'bar' | 'area'
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 
 type ChartColor =
   | 'hsl(var(--chart-1))'
@@ -18,7 +22,11 @@ type User = {
   id: number
   name: string
   email: string
+<<<<<<< HEAD
   role: Role
+=======
+  role?: Role
+>>>>>>> b73017f (chore(main): #3 change tech stack)
   password?: string
 }
 type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"

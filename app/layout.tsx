@@ -6,6 +6,10 @@ import AuthProvider from '@/common/providers/auth-provider'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import LanguageProvider from '@/common/providers/lang-provider'
+<<<<<<< HEAD
+=======
+import { Toaster } from '@/components/ui/sonner'
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -44,7 +48,14 @@ export default async function RootLayout({
 						defaultTheme='dark'
 						enableSystem
 						disableTransitionOnChange>
+<<<<<<< HEAD
 						<AuthProvider>{children}</AuthProvider>
+=======
+						<AuthProvider>
+							{children}
+							<Toaster />
+						</AuthProvider>
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 					</ThemeProvider>
 				</body>
 			</LanguageProvider>

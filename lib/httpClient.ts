@@ -1,0 +1,1 @@
+export const http = `${process.env.NEXT_APP_URL}:${process.env.NEXT_APP_PORT}/api`
