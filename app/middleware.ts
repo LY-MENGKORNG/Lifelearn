@@ -1,14 +1,12 @@
-import createMiddleware from 'next-intl/middleware'
+import { NextRequest, NextResponse } from 'next/server'
 
-export default createMiddleware({
+export function middleware(req: NextRequest) {
+  const authToken = req.headers.get('Authorization')
 
-  // A list of all locales that are supported.
-  locales: ['km', 'en'],
-
-  // Used when no locale matched
-  defaultLocale: 'km',
-})
-
-export const config = {
-  matcher: ['/', '/(km|en)/:path*']
+  // if (!authToken) {
+  //   return new NextResponse('Unauthorized', {
+  //     status: 401,
+  //   })
+  // }
+  return NextResponse.next()
 }
