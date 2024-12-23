@@ -1,5 +1,9 @@
 {
 	"appName": "Lifelearn",
+<<<<<<< HEAD
+=======
+	"welcome": "Welcome to Lifelearn",
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 	"paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit odio et similique iusto eius. Ex et voluptas hic deleniti aut!",
 	"theme": {
 		"dark": "dark",
@@ -14,7 +18,17 @@
 		"view": "view",
 		"bar": "bar",
 		"line": "line",
+<<<<<<< HEAD
 		"area": "area",
 		"scatter": "scatter"
+=======
+		"area": "area"
+	},
+	"button": {
+		"submit": "submit",
+		"cancel": "cancel",
+		"reset": "reset",
+		"save": "save"
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 	}
 }

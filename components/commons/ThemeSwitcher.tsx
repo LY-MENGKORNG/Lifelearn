@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+'use client'
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 import { Moon, Sun } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -10,7 +14,11 @@ import {
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 
+<<<<<<< HEAD
 export default function ThemeController() {
+=======
+export default function ThemeSwitcher() {
+>>>>>>> b73017f (chore(main): #3 change tech stack)
 	const t = useTranslations()
 	const { setTheme } = useTheme()
 
