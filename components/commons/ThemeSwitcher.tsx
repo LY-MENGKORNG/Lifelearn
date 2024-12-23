@@ -1,3 +1,4 @@
+'use client'
 import { Moon, Sun } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -10,7 +11,7 @@ import {
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 
-export default function ThemeController() {
+export default function ThemeSwitcher() {
 	const t = useTranslations()
 	const { setTheme } = useTheme()
 

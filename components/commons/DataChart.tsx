@@ -5,17 +5,16 @@ import {
 	PieChart,
 	LineChart,
 	AreaChart,
-	CartesianGrid,
 	XAxis,
 	YAxis,
 	Line,
 	Area,
-	Scatter,
-	Legend,
 } from 'recharts'
 import {
 	ChartConfig,
 	ChartContainer,
+	ChartLegend,
+	ChartLegendContent,
 	ChartTooltip,
 	ChartTooltipContent,
 } from '../ui/chart'
@@ -39,28 +38,27 @@ import {
 	SelectValue,
 } from '../ui/select'
 import { useTranslations } from 'next-intl'
+import { Label } from '../ui/label'
 
-type DataChartProps<T, K extends keyof T> = {
+type DataChartProps<T> = {
 	data: T[]
 	type?: ChartType
 	title?: string
 	description?: string
-	xAxisKey: K
-	yAxisKeys: (keyof T)[]
 	footer?: ReactNode
 }
 
-export default function DataChart<T, K extends keyof T>({
+export default function DataChart<T>({
 	data,
 	type = 'bar',
 	title = 'Data Chart',
 	description = 'Showing data chart',
-	xAxisKey,
-	yAxisKeys,
 	footer,
-}: DataChartProps<T, K>) {
+}: DataChartProps<T>) {
 	const t = useTranslations()
 	const [chartType, setChartType] = useState<ChartType>(type)
+	const yAxisKeys = Object.keys(data[0]!)
+	const xAxisKey = yAxisKeys.splice(0, 1)[0]
 
 	const config = yAxisKeys.reduce((acc, key, index) => {
 		acc[key as string] = {
@@ -75,7 +73,6 @@ export default function DataChart<T, K extends keyof T>({
 		bar: BarChart,
 		area: AreaChart,
 		pie: PieChart,
-		scatter: Scatter,
 	}[chartType]
 
 	const DataSeries = yAxisKeys.map((key, index) => {
@@ -83,7 +80,6 @@ export default function DataChart<T, K extends keyof T>({
 			line: Line,
 			bar: Bar,
 			area: Area,
-			scatter: Scatter,
 		}[chartType]
 
 		return (
@@ -97,7 +93,7 @@ export default function DataChart<T, K extends keyof T>({
 						? `var(--color-${key as string})`
 						: undefined
 				}
-				radius={4}
+				radius={3}
 			/>
 		)
 	})
@@ -121,7 +117,6 @@ export default function DataChart<T, K extends keyof T>({
 							<SelectItem value='line'>{t('selection.line')}</SelectItem>
 							<SelectItem value='bar'>{t('selection.bar')}</SelectItem>
 							<SelectItem value='area'>{t('selection.area')}</SelectItem>
-							<SelectItem value='scatter'>{t('selection.scatter')}</SelectItem>
 						</SelectGroup>
 					</SelectContent>
 				</Select>
@@ -146,9 +141,17 @@ export default function DataChart<T, K extends keyof T>({
 						/>
 						<ChartTooltip
 							cursor={false}
-							content={<ChartTooltipContent indicator='dashed' />}
+							content={
+								<ChartTooltipContent
+									className='capitalize'
+									indicator='line'
+								/>
+							}
 						/>
-						<Legend />
+						<ChartLegend
+							className='capitalize'
+							content={<ChartLegendContent />}
+						/>
 						{Object.keys(config).map((key) =>
 							DataSeries.find((series) => series.props.dataKey === key)
 						)}

@@ -2,6 +2,12 @@ import React from 'react'
 import DataChart from '@/components/commons/DataChart'
 import { TrendingUp } from 'lucide-react'
 
+type DataChartType = {
+	month: string
+	income: number
+	expense: number
+}
+
 const dataChart = [
 	{ month: 'Jan', income: 50, expense: 100 },
 	{ month: 'Feb', income: 300, expense: 200 },
@@ -14,11 +20,9 @@ const dataChart = [
 ]
 
 const FinancialDataChart = () => (
-	<DataChart
+	<DataChart<DataChartType>
 		data={dataChart}
-		xAxisKey='month'
-		yAxisKeys={['income', 'expense']}
-		title='Financial Data Chart'
+		title='Financial Data'
 		description='Showing financial data chart'
 		footer={
 			<>

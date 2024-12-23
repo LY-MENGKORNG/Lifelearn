@@ -3,9 +3,9 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/common/providers/theme-provider'
 import AuthProvider from '@/common/providers/auth-provider'
-import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import LanguageProvider from '@/common/providers/lang-provider'
+import { Toaster } from '@/components/ui/sonner'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -44,7 +44,10 @@ export default async function RootLayout({
 						defaultTheme='dark'
 						enableSystem
 						disableTransitionOnChange>
-						<AuthProvider>{children}</AuthProvider>
+						<AuthProvider>
+							{children}
+							<Toaster />
+						</AuthProvider>
 					</ThemeProvider>
 				</body>
 			</LanguageProvider>
