@@ -34,6 +34,7 @@ type DataTableProps<Tdata, Tvalue> = {
 	columns: ColumnDef<Tdata, Tvalue>[]
 	data?: Tdata[]
 	dataEndpoint?: string // eg. /localhost:3000/api/user
+	showFilter?: boolean
 }
 
 /**
@@ -46,19 +47,19 @@ export default function DataTable<Tdata, Tvalue>({
 	columns,
 	data = [],
 	dataEndpoint,
+	showFilter = true,
 }: DataTableProps<Tdata, Tvalue>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 	const [rowSelection, setRowSelection] = useState({})
 	const [chartData, setChartData] = useState<Tdata[]>(data)
-	const [loading, setLoading] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 
 	useEffect(() => {
 		if (!dataEndpoint) return
 
 		const fetchData = async () => {
-			setLoading(true)
 			try {
 				const response = await fetch(dataEndpoint, { cache: 'no-store' })
 				const result: Tdata[] = await response.json()
@@ -93,39 +94,41 @@ export default function DataTable<Tdata, Tvalue>({
 	})
 
 	return (
-		<div className={`w-full`}>
-			<div className={'flex items-center pb-1'}>
-				<Input
-					placeholder={'Filter email...'}
-					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-					onChange={(event: ChangeEvent<HTMLInputElement> | undefined) =>
-						table.getColumn('email')?.setFilterValue(event?.target.value)
-					}
-					className={'max-w-sm'}
-				/>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button
-							variant={'outline'}
-							className={'ml-auto'}>
-							Columns <ChevronDown />
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align={'end'}>
-						{table
-							.getAllColumns()
-							.filter((column) => column.getCanHide())
-							.map((column) => (
-								<DropdownMenuCheckboxItem
-									key={column.id}
-									checked={column.getIsVisible()}
-									onCheckedChange={(value) => column.toggleVisibility(value)}>
-									{column.id}
-								</DropdownMenuCheckboxItem>
-							))}
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</div>
+		<div className={`w-full h-full flex flex-col`}>
+			{showFilter && (
+				<div className={'flex items-center pb-1'}>
+					<Input
+						placeholder={'Filter email...'}
+						value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+						onChange={(event: ChangeEvent<HTMLInputElement> | undefined) =>
+							table.getColumn('email')?.setFilterValue(event?.target.value)
+						}
+						className={'max-w-sm'}
+					/>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button
+								variant={'outline'}
+								className={'ml-auto'}>
+								Columns <ChevronDown />
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align={'end'}>
+							{table
+								.getAllColumns()
+								.filter((column) => column.getCanHide())
+								.map((column) => (
+									<DropdownMenuCheckboxItem
+										key={column.id}
+										checked={column.getIsVisible()}
+										onCheckedChange={(value) => column.toggleVisibility(value)}>
+										{column.id}
+									</DropdownMenuCheckboxItem>
+								))}
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
+			)}
 			<div className='rounded-md border'>
 				<Table>
 					{/* Table Header */}

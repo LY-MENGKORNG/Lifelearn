@@ -11,12 +11,12 @@ The high school management system is available for purchase directly through the
 ## 📝 Table of contents
 
 |                                        Go direct to Headers                                        |
-| :-------------------------------------------------------------------------------------------------: |
+| :------------------------------------------------------------------------------------------------: |
 |                             [Project Entry points](#project-entry-points)                             |
-|                      [Project Configurations](#%EF%B8%8F-project-configurations)                       |
-|                        [Project Dependencies](#%EF%B8%8F-project-dependencies)                         |
-| [Project compiles and hot-reloads for development](#project-compiles-and-hot-reloads-for-development)  |
-|     [Project compiles and minifies for production](#project-compiles-and-minifies-for-production)      |
+|                      [Project Configurations](#%EF%B8%8F-project-configurations)                      |
+|                        [Project Dependencies](#%EF%B8%8F-project-dependencies)                        |
+| [Project compiles and hot-reloads for development](#project-compiles-and-hot-reloads-for-development) |
+|     [Project compiles and minifies for production](#project-compiles-and-minifies-for-production)     |
 
 ## **🎯Project Entry points**
 
@@ -52,7 +52,7 @@ NEXT_APP_API_PORT=
 NEXT_APP_PORT=
 ```
 
-#### ⚒️ Project Dependencies
+#### ⚒️ Project Dependencies (node version 23.4.0)
 
 ```bash
 npm install

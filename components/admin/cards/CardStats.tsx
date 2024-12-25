@@ -6,7 +6,7 @@ import {
 	type ForwardRefExoticComponent,
 	type RefAttributes,
 } from 'react'
-import { type BadgeVariantsProps, Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge'
 
 type CardStatsType = {
 	title: string

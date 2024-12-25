@@ -1,2 +1,2 @@
-// 'use server'
-export const http = `${process.env.NEXT_APP_API_URL}:${process.env.NEXT_APP_API_PORT}/api`
+'use server'
+export const http = async () => `${process.env.NEXT_APP_API_URL}:${process.env.NEXT_APP_API_PORT}/api`

@@ -30,6 +30,7 @@ export default function LanguageProvider({
 			}}>
 			<NextIntlClientProvider
 				locale={locale}
+				timeZone={process.env.NEXT_APP_TIMEZONE}
 				messages={message}>
 				{children}
 			</NextIntlClientProvider>
