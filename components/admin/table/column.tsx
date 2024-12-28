@@ -29,7 +29,7 @@ export const userTableColumns: ColumnDef<User>[] = [
 		enableHiding: false,
 	},
 	{
-		accessorKey: 'name',
+		accessorKey: 'username',
 		header: ({ column }) => (
 			<Button
 				variant='ghost'
@@ -38,7 +38,9 @@ export const userTableColumns: ColumnDef<User>[] = [
 				<ArrowUpDown />
 			</Button>
 		),
-		cell: ({ row }) => <div className='lowercase'>{row.getValue('name')}</div>,
+		cell: ({ row }) => (
+			<div className='lowercase'>{row.getValue('username')}</div>
+		),
 		enableSorting: true,
 	},
 	{

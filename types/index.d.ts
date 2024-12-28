@@ -16,9 +16,17 @@ type ChartColor =
 // Person
 type User = {
   id: number
-  name: string
+  username: string | null
+  firstName: string
+  lastName: string
   email: string
-  role?: Role
-  password?: string
+  password: string
+  tokenCreationDate: Date | null
+  refreshToken: string | null
+  loginFailures: number | null
+  isOnline: boolean
+  createdAt: Date
+  updatedAt: Date | null
 }
+
 type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"
