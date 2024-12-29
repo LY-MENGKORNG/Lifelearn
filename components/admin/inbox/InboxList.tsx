@@ -6,7 +6,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { EMAIL_TAG } from '@/constants/email'
 import { ReactNode, useEffect, useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { getEmail } from '@/app/actions/email'
+import { getEmail } from '@/actions/email'
 import EmailLoading from './EmailLoading'
 import useGlobalContext from '@/common/contexts/global-context'
 

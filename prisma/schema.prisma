@@ -111,3 +111,40 @@ model Book {
   updatedAt   DateTime? @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
 }
+
+model Email {
+  id        Int                @id @default(autoincrement())
+  subject   String
+  from      String
+  timestamp String
+  preview   String
+  tags      EmailTagRelation[]
+  replyTo   String?
+  content   String?
+  status    EmailStatus?
+}
+
+model EmailTagRelation {
+  id      Int      @id @default(autoincrement())
+  emailId Int      @map("email_id")
+  tag     EmailTag
+
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("email_tag_relation")
+}
+
+enum EmailTag {
+  important
+  meeting
+  urgent
+  personal
+  work
+  family
+}
+
+enum EmailStatus {
+  sent
+  read
+  unread
+}

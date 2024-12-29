@@ -10,9 +10,16 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 	const [loading, setLoading] = useState<boolean>(false)
 	const [currentUser, setCurrentUser] = useState<User | null>({
 		id: 1,
-		role: RoleEnum.ADMIN,
+		firstName: 'John',
+		lastName: 'Snow',
+		username: 'John Doe',
 		email: 'johann.kart@gmail.com',
-		name: 'John Doe',
+		tokenCreationDate: new Date(),
+		refreshToken: 'sdfasdfasd',
+		loginFailures: 0,
+		isOnline: true,
+		createdAt: new Date(),
+		updatedAt: new Date(),
 	})
 	const handleLogin = async ({
 		email,

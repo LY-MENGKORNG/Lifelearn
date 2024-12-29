@@ -20,7 +20,7 @@ type User = {
   firstName: string
   lastName: string
   email: string
-  password: string
+  password?: string
   tokenCreationDate: Date | null
   refreshToken: string | null
   loginFailures: number | null
@@ -29,9 +29,6 @@ type User = {
   updatedAt: Date | null
 }
 
-<<<<<<< HEAD
-type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"
-=======
 type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"
 
 type BadgeVariantsProps =
@@ -63,4 +60,3 @@ type Email = {
   content?: string
   status?: EmailStatus
 }
->>>>>>> fc1e8ac (feat(design-frontend): #1 design frontend)
