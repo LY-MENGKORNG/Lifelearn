@@ -21,6 +21,19 @@
 		"submit": "submit",
 		"cancel": "cancel",
 		"reset": "reset",
-		"save": "save"
+		"save": "save",
+		"send": "send"
+	},
+	"inbox": {
+		"title": "inbox",
+		"read": "read",
+		"unread": "unread"
+	},
+	"tooltip": {
+		"markAsRead": "mark as read",
+		"markAsUnread": "mark as unread"
+	},
+	"label": {
+		"mute": "mute this thread"
 	}
 }

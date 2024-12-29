@@ -305,9 +305,7 @@ export default function AppSidebar({ children }: AppSidebarProps) {
 			</Sidebar>
 			<SidebarInset>
 				<Navbar user={sidebar.user} />
-				<main className='flex flex-1 flex-col gap-4 px-4 py-6 pt-0'>
-					{children}
-				</main>
+				{children}
 			</SidebarInset>
 		</>
 	)

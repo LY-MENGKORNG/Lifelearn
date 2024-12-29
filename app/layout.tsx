@@ -6,6 +6,7 @@ import AuthProvider from '@/common/providers/auth-provider'
 import { getLocale, getMessages } from 'next-intl/server'
 import LanguageProvider from '@/common/providers/lang-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { TooltipProvider } from '@radix-ui/react-tooltip'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -44,10 +45,12 @@ export default async function RootLayout({
 						defaultTheme='dark'
 						enableSystem
 						disableTransitionOnChange>
-						<AuthProvider>
-							{children}
-							<Toaster />
-						</AuthProvider>
+						<TooltipProvider delayDuration={0}>
+							<AuthProvider>
+								{children}
+								<Toaster />
+							</AuthProvider>
+						</TooltipProvider>
 					</ThemeProvider>
 				</body>
 			</LanguageProvider>

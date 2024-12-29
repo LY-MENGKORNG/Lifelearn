@@ -1,6 +1,6 @@
 import BreadCrumb from '@/components/commons/BreadCrumb'
 import Dropdown from '@/components/commons/Dropdown'
-import ThemeController from '@/components/commons/ThemeSwitcher'
+import ThemeSwitcher from '@/components/commons/ThemeSwitcher'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -16,8 +16,8 @@ type NavbarProps = {
 export default function Navbar({ user }: NavbarProps) {
 	return (
 		<header className='flex h-16 shrink-0 pr-3 items-center justify-between transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 sticky top-0 z-[10] backdrop-blur-md border-b'>
-			<div className='flex items-center gap-2 px-4'>
-				<SidebarTrigger className='-ml-1' />
+			<div className='flex items-center gap-2 px-3'>
+				<SidebarTrigger />
 				<Separator
 					orientation='vertical'
 					className='mr-2 h-4'
@@ -55,7 +55,7 @@ export default function Navbar({ user }: NavbarProps) {
 						</Avatar>
 					</Button>
 				</Dropdown>
-				<ThemeController />
+				<ThemeSwitcher />
 			</div>
 		</header>
 	)
