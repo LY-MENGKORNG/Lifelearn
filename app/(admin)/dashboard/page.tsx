@@ -14,7 +14,7 @@ export default async function Dashboard() {
 	const limitQueryCount = 4
 
 	return (
-		<>
+		<div className='px-4 flex flex-col gap-3'>
 			<h1 className='sub-title mt-3'>{t('welcome')} 👋</h1>
 			<section className='grid gap-2 xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2'>
 				<Suspense fallback={<CardStatLoading count={limitQueryCount} />}>
@@ -25,10 +25,10 @@ export default async function Dashboard() {
 				<div className='xl:col-span-7 lg:col-span-6 col-span-12'>
 					<FinancialDataChart />
 				</div>
-				<div className='xl:col-span-5 lg:col-span-6 col-span-12'>
+				<div className='xl:col-span-5 lg:col-span-6 col-span-12 max-h-[500px]'>
 					<UserTable />
 				</div>
 			</section>
-		</>
+		</div>
 	)
 }

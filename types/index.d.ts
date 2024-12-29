@@ -29,4 +29,38 @@ type User = {
   updatedAt: Date | null
 }
 
+<<<<<<< HEAD
 type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"
+=======
+type Role = "admin" | "user" | "principal" | "teacher" | "student" | "guest" | "parent"
+
+type BadgeVariantsProps =
+  | 'default'
+  | 'secondary'
+  | 'destructive'
+  | 'outline'
+  | 'error'
+  | 'success'
+  | 'skyblue'
+  | 'purple'
+  | 'info'
+  | 'fuchsia'
+  | 'teal'
+  | 'orange'
+
+type EmailStatus = "read" | "unread"
+
+type EmailTag = "important" | "meeting" | "urgent" | "personal" | "work" | "family"
+
+type Email = {
+  id: string
+  subject: string
+  from: string
+  timestamp: string
+  preview: string
+  tags: EmailTag[]
+  replyTo?: string
+  content?: string
+  status?: EmailStatus
+}
+>>>>>>> fc1e8ac (feat(design-frontend): #1 design frontend)

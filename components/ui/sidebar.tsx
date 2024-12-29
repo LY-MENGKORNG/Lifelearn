@@ -10,12 +10,16 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
-import { Sheet, SheetContent } from '@/components/ui/sheet'
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetTitle,
+} from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
 	Tooltip,
 	TooltipContent,
-	TooltipProvider,
 	TooltipTrigger,
 } from '@/components/ui/tooltip'
 
@@ -131,24 +135,22 @@ const SidebarProvider = React.forwardRef<
 
 		return (
 			<SidebarContext.Provider value={contextValue}>
-				<TooltipProvider delayDuration={0}>
-					<div
-						style={
-							{
-								'--sidebar-width': SIDEBAR_WIDTH,
-								'--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
-								...style,
-							} as React.CSSProperties
-						}
-						className={cn(
-							'group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar',
-							className
-						)}
-						ref={ref}
-						{...props}>
-						{children}
-					</div>
-				</TooltipProvider>
+				<div
+					style={
+						{
+							'--sidebar-width': SIDEBAR_WIDTH,
+							'--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
+							...style,
+						} as React.CSSProperties
+					}
+					className={cn(
+						'group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar',
+						className
+					)}
+					ref={ref}
+					{...props}>
+					{children}
+				</div>
 			</SidebarContext.Provider>
 		)
 	}
@@ -206,6 +208,8 @@ const Sidebar = React.forwardRef<
 							} as React.CSSProperties
 						}
 						side={side}>
+						<SheetTitle></SheetTitle> {/* Use to prevent error */}
+						<SheetDescription></SheetDescription> {/* Use to prevent error */}
 						<div className='flex h-full w-full flex-col'>{children}</div>
 					</SheetContent>
 				</Sheet>
@@ -269,10 +273,7 @@ const SidebarTrigger = React.forwardRef<
 			variant='ghost'
 			size='icon'
 			className={cn('h-7 w-7', className)}
-			onClick={(event) => {
-				onClick?.(event)
-				toggleSidebar()
-			}}
+			onClick={toggleSidebar}
 			{...props}>
 			<PanelLeft />
 			<span className='sr-only'>Toggle Sidebar</span>

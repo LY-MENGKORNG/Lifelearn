@@ -7,6 +7,7 @@ export default async function UserTable() {
 		<DataTable
 			columns={userTableColumns}
 			dataEndpoint={`${http}/users`}
+			showFilter={false}
 		/>
 	)
 }
