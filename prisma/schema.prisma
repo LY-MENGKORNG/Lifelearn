@@ -14,57 +14,100 @@ datasource db {
 }
 
 model Permission {
-  id             Int              @id @default(autoincrement())
-  key            String
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime?        @updatedAt
+  id        Int       @id @default(autoincrement())
+  key       String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
   roles          Role[]
   RolePermission RolePermission[]
 }
 
 model Role {
-  id             Int              @id @default(autoincrement())
-  name           String
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime?        @updatedAt
+  id        Int       @id @default(autoincrement())
+  name      String    @default("user")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
   permissions    Permission[]
   RolePermission RolePermission[]
+  userHasRoles   UserHasRole[]
 }
 
 model RolePermission {
-  id           Int        @id @default(autoincrement())
-  roleId       Int
-  permissionId Int
-  role         Role       @relation(fields: [roleId], references: [id])
-  permission   Permission @relation(fields: [permissionId], references: [id])
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime?  @updatedAt
+  id           Int       @id @default(autoincrement())
+  roleId       Int       @map("role_id")
+  permissionId Int       @map("permission_id")
+  read         Boolean   @default(false)
+  create       Boolean   @default(false)
+  update       Boolean   @default(false)
+  delete       Boolean   @default(false)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime? @updatedAt @map("updated_at")
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@map("role_permission")
 }
 
 model User {
-  id                Int            @id @default(autoincrement())
+  id                Int       @id @default(autoincrement())
   username          String?
-  firstName         String
-  lastName          String
-  email             String         @unique
+  firstName         String    @map("first_name")
+  lastName          String    @map("last_name")
+  email             String    @unique
   password          String
-  tokenCreationDate DateTime?
-  refreshToken      String?
-  loginFailures     Int?
-  isOnline          Boolean        @default(false)
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime?      @updatedAt
-  organization      Organization[]
+  tokenCreationDate DateTime? @map("token_creation_date")
+  refreshToken      String?   @map("refresh_token")
+  loginFailures     Int?      @map("login_failures")
+  isOnline          Boolean   @default(false) @map("is_online")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime? @updatedAt @map("updated_at")
+
+  organization Organization?
+  books        Book[]
+  userHasRoles UserHasRole[]
+}
+
+model UserHasRole {
+  id             Int  @id @default(autoincrement())
+  userId         Int  @map("user_id")
+  roleId         Int  @map("role_id")
+  organizationId Int? @map("organization_id")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  role         Role          @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("user_has_role")
 }
 
 model Organization {
   id          Int       @id @default(autoincrement())
   name        String
-  managerId   Int
+  managerId   Int       @map("manager_id")
   manager     User      @relation(fields: [managerId], references: [id])
-  logoUrl     String?
+  logoUrl     String?   @map("logo_url")
   address     String?
-  phoneNumber String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime? @updatedAt
+  phoneNumber String?   @map("phone_number")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+
+  userHasRole UserHasRole[]
+
+  @@unique([managerId])
+}
+
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  content     String
+  cover       String?
+  authorId    Int       @map("author_id")
+  author      User      @relation(fields: [authorId], references: [id])
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
 }

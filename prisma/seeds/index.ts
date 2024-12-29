@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client'
 import { userSeed } from './user'
 import { permissionSeed } from './permission'
 import { roleSeed } from './role'
+import { rolePermissionSeed } from './role-permission'
+import { userRoleSeed } from './user-role'
 const prisma = new PrismaClient()
 
 /**
@@ -9,9 +11,13 @@ const prisma = new PrismaClient()
  *  @description The main seeding file.
  */
 async function main() {
-  await permissionSeed()
-  await roleSeed()
-  await userSeed()
+  await permissionSeed(prisma)
+  await roleSeed(prisma)
+  await rolePermissionSeed(prisma)
+  await userSeed(prisma)
+  await userRoleSeed(prisma)
+
+  console.log('All data seeded successfully!')
 }
 main()
   .then(async () => {
