@@ -1,0 +1,47 @@
+{
+	"appName": "Lifelearn",
+	"welcome": "Welcome to Lifelearn",
+	"paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit odio et similique iusto eius. Ex et voluptas hic deleniti aut!",
+	"theme": {
+		"dark": "dark",
+		"light": "light",
+		"system": "system"
+	},
+	"lang": {
+		"km": "Khmer",
+		"en": "English"
+	},
+	"selection": {
+		"view": "view",
+		"bar": "bar",
+		"line": "line",
+		"area": "area"
+	},
+	"button": {
+		"submit": "submit",
+		"cancel": "cancel",
+		"reset": "reset",
+		"save": "save",
+		"send": "send"
+	},
+	"inbox": {
+		"title": "inbox",
+		"read": "read",
+		"unread": "unread"
+	},
+	"tooltip": {
+		"markAsRead": "mark as read",
+		"markAsUnread": "mark as unread"
+	},
+	"label": {
+		"mute": "mute this thread"
+	},
+	"configs": {
+		"rolePermission": {
+			"title": "role permission",
+			"buttons": {
+				"addRolePermission": "add role permission"
+			}
+		}
+	}
+}

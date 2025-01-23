@@ -1,7 +1,28 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
 
+const withNextIntl = createNextIntlPlugin()
+
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    localPatterns: [
+      {
+        pathname: '/src/assets/**',
+        search: ''
+      }
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
+      }
+    ]
+  }
+}
 
-export default nextConfig;
+module.exports = withNextIntl(nextConfig)
